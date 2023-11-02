@@ -25,21 +25,15 @@ form.addEventListener('submit', (e) => {
     let department = $('department').value
 
     // INSERT A NEW ROW AT THE END OF THE EMPLOYEES TABLE
-    let tr = document.createElement('tr')
-    table.appendChild(tr)
+    let row = table.insertRow()
 
     // INSERT A CELL FOR EACH ITEM WITHIN THE NEW ROW
-    let td1 = document.createElement('td')
-    let td2 = document.createElement('td')
-    let td3 = document.createElement('td')
-    let td4 = document.createElement('td')
-    let td5 = document.createElement('td')
-
-    tr.appendChild(td1)
-    tr.appendChild(td2)
-    tr.appendChild(td3)
-    tr.appendChild(td4)
-    tr.appendChild(td5)
+    let cellID = row.insertCell()
+    let cellName = row.insertCell()
+    let cellExtension = row.insertCell()
+    let cellEmail = row.insertCell()
+    let cellDepartment = row.insertCell()
+    let cellDelete = row.insertCell()
     
     let text1 = document.createTextNode(id)
     let text2 = document.createTextNode(name)
@@ -49,22 +43,22 @@ form.addEventListener('submit', (e) => {
 
 
     // APPEND THE TEXT VALUES AS TEXT NODES WITHIN THE CELLS
-    td1.appendChild(text1)
-    td2.appendChild(text2)
-    td3.appendChild(text3)
-    td4.appendChild(text4)
-    td5.appendChild(text5)
+    cellID.appendChild(text1)
+    cellName.appendChild(text2)
+    cellExtension.appendChild(text3)
+    cellEmail.appendChild(text4)
+    cellDepartment.appendChild(text5)
 
     // CREATE THE DELETE BUTTON
      let deleteBtn = document.createElement('button')
      //ADD BOOTSTRATP CLASSES FOR A BUTTON
-     deleteBtn.className = 'btn btn-danger btn-sm float-end delete'
+     deleteBtn.className = 'btn btn-danger btn-sm float-end'
      //CREATE TEXT NODE FOR DELETE BUTTON AND SET IT TO 'X'
      let textDelete = document.createTextNode('X')
      //APPEND TEXT NODE TO DELETE BUTTON
      deleteBtn.appendChild(textDelete)
      //APPEND DELETE BUTTON TO LI
-     tr.appendChild(deleteBtn)
+     cellDelete.appendChild(deleteBtn)
 
     // RESET THE FORM
     form.reset()
@@ -80,16 +74,14 @@ form.addEventListener('submit', (e) => {
 // DELETE EMPLOYEE
 table.addEventListener('click', (e) => {
     //CHECK AND SEE IF THE DELETE BUTTON WAS CLICKED 
-    if (e.target.classList.contains('delete')) {
         //DISPLAY CONFIRMATION OF THE DELETE TO THE USER
-        if (confirm('Are you sure you want to delete this task?')) {
+        if (confirm('Are you sure you want to delete this employee?')) {
             //REMOVE CHILD
-            table.removeChild(e.target.parentElement)
+            table.deleteRow( e.target.parentNode.parentNode.rowIndex );
 
             countRows --
             $('empCount').innerHTML = countRows
         }
-    }
 
 })
 
