@@ -8,7 +8,7 @@ let table = $('employees')
 
 
 // SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
-var countRows = table.getElementsByTagName('tr').length-1
+let countRows = table.getElementsByTagName('tr').length-1
 $('empCount').innerHTML = countRows
 
 
